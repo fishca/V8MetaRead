@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.041,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\APIcfBase.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.143,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.885,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.085,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.062,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.304,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.390,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.876,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.474,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.969,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.865,C:\Users\fishca\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\work\delphi\MetaRead\SOURCE\MetaRead.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.906,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.719,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.651,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.592,=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.020,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\TempStream.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.640,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\Class_1CD.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.850,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\CRC32.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.810,C:\Users\fishca\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\work\delphi\MetaRead\SOURCE\V8MetaRead.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.480,=C:\Users\fishca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.865,C:\Users\fishca\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\MetaRead.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.971,D:\work\delphi\MetaRead\SOURCE\ZZlib.pas=D:\work\delphi\MetaRead\SOURCE\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.029,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\Base64.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.538,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\MetaData.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.777,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\NodeTypes.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.750,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\MessageRegistration.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.634,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\Common.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.686,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\Parse_tree.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.892,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\ConfigStorage.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.716,D:\work\delphi\MetaRead\SOURCE\Unit1.pas=D:\work\delphi\MetaRead\SOURCE\FileFormat.pas</Transaction>
+  </Transactions>
+</BorlandProject>
