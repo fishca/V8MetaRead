@@ -3,7 +3,7 @@ unit ConfigStorage;
 interface
 
 uses System.Classes, System.IOUtils, System.SysUtils, Winapi.Windows, NodeTypes,
-     System.RegularExpressions, System.Syncobjs, System.Generics.Collections, System.WideStrUtils, ZZlib;
+     System.RegularExpressions, System.Syncobjs, System.Generics.Collections, System.WideStrUtils, ZZlib, APIcfBase;
 
 type
 //---------------------------------------------------------------------------
@@ -73,6 +73,42 @@ public
   destructor Destroy;
 
   property dir: string read fdir;
+  function readfile(const path: string): ConfigFile; virtual; // Если файл не существует, возвращается NULL
+  function writefile(const path: string; str: TStream): Boolean; virtual;
+
+  function presentation(): string; virtual;
+
+  function fileexists(const path: string): Boolean; virtual;
+
+  procedure close(cf: ConfigFile); virtual;
+
+end;
+
+//---------------------------------------------------------------------------
+// Класс адаптера контейнера конфигурации - cf (epf, erf, cfe) файл
+//class ConfigStorageCFFile : public ConfigStorage
+//{
+//private:
+//	String filename;
+//	v8catalog* cat;
+//public:
+//	__fastcall ConfigStorageCFFile(const String& fname);
+//	virtual __fastcall ~ConfigStorageCFFile();
+//	virtual CongigFile* __fastcall readfile(const String& path);
+//	virtual bool __fastcall writefile(const String& path, TStream* str);
+//	virtual String __fastcall presentation();
+//	virtual void __fastcall close(CongigFile* cf);
+//	virtual bool __fastcall fileexists(const String& path);
+//};
+ConfigStorageCFFile = class(ConfigStorageObject)
+private
+  filename: string;
+  cat: v8catalog;
+public
+
+  constructor Create(fname: string);
+  destructor Destroy;
+
   function readfile(const path: string): ConfigFile; virtual; // Если файл не существует, возвращается NULL
   function writefile(const path: string; str: TStream): Boolean; virtual;
 
@@ -196,6 +232,82 @@ begin
   f.Free;
 
   Result := True;
+end;
+
+{ ConfigStorageCFFile }
+
+procedure ConfigStorageCFFile.close(cf: ConfigFile);
+begin
+
+end;
+
+constructor ConfigStorageCFFile.Create(fname: string);
+begin
+  inherited Create();
+  filename := fname;
+  cat := v8catalog.Create(filename);
+end;
+
+destructor ConfigStorageCFFile.Destroy;
+begin
+  cat.Free;
+  inherited Destroy;
+end;
+
+function ConfigStorageCFFile.fileexists(const path: string): Boolean;
+begin
+
+end;
+
+function ConfigStorageCFFile.presentation: string;
+begin
+
+end;
+
+function ConfigStorageCFFile.readfile(const path: string): ConfigFile;
+var
+  c : v8catalog;
+  f : v8file;
+  i,j,k : Integer;
+  cf : ConfigFile;
+  fname : string;
+begin
+  if not cat.IsOpen then
+    begin
+      Exit;
+    end;
+  fname := TStringBuilder(path).Replace('/', '\').ToString;
+  c := cat;
+
+  j := Pos('\', fname);
+  k := Pos('\', fname);
+  for i := j to k do
+  begin
+    f := c.GetFile(fname.Substring(1, i - 1));
+    if not Assigned(f) then
+      Exit;
+    c := f.GetCatalog;
+    if not Assigned(c) then
+      Exit;
+    fname := fname.Substring(i + 1, fname.Length - i);
+  end;
+
+  f := c.GetFile(fname);
+  if not Assigned(f) then
+    Exit;
+  if not f.Open then
+      Exit;
+  cf.str := f.get_data;
+  cf.str.Seek(0, soBeginning);
+  cf.addin := f;
+
+  Result := cf;
+end;
+
+function ConfigStorageCFFile.writefile(const path: string;
+  str: TStream): Boolean;
+begin
+
 end;
 
 end.
