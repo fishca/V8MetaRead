@@ -146,6 +146,81 @@ T_Class = class
 end;
 
 
+Value1C_metaobj = class;
+
+
+
+//---------------------------------------------------------------------------
+// Объект метаданных
+MetaObject = class(MetaBase)
+protected
+  ffullname: String;
+  fefullname: String;
+  fuid: TGUID;
+  fvalue: Value1C_metaobj;
+public
+  //static
+  class var map: TDictionary<TGUID, MetaObject>;
+  class var smap: TDictionary<String, MetaObject>;
+  constructor Create(_uid: TGUID; _value: Value1C_metaobj); overload;
+  constructor Create(_uid: TGUID; _value: Value1C_metaobj; _name: string; _ename : string); overload;
+  procedure setfullname(_fullname: string);
+  procedure setefullname(_efullname: string);
+
+  property fullname : string read ffullname;
+  property efullname: string read fefullname;
+  property uid: TGUID read fuid;
+  property value: Value1C_metaobj read fvalue;
+  function getfullname(english: Boolean = False): string;
+end;
+
+Value1C_metaobj = class
+
+end;
+
+//---------------------------------------------------------------------------
+// Генерируемый тип
+MetaGeneratedType = class(MetaBase)
+protected
+  fwoprefix :Boolean;
+public
+  property woprefix :Boolean  read fwoprefix;
+  constructor Create(_name: string; _ename: string); overload;
+  constructor Create(tr: tree); overload;
+end;
+
+//---------------------------------------------------------------------------
+// Право
+MetaRight = class(MetaBase)
+protected
+  fuid: TGUID;
+  fver1C: Version1C;
+public
+  class var map: TDictionary<TGUID, MetaRight>;
+  class var smap: TDictionary<string, MetaRight>;
+  constructor Create(tr: tree);
+//  class function getright_guid(_uid: TGUID): MetaRight; static;
+//  class function getright_name(_name: string): MetaRight; static;
+  class function getright(_uid: TGUID): MetaRight; overload; static;
+  class function getright(_name: string): MetaRight; overload; static;
+  property uid:TGUID  read fuid;
+  property ver1C: Version1C read fver1C;
+
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 implementation
 
 
@@ -289,6 +364,100 @@ end;
 function MetaProperty.getowner: MetaType;
 begin
   Result := owner;
+end;
+
+{ MetaObject }
+
+constructor MetaObject.Create(_uid: TGUID; _value: Value1C_metaobj);
+begin
+  fuid := _uid;
+  fvalue := _value;
+end;
+
+constructor MetaObject.Create(_uid: TGUID; _value: Value1C_metaobj; _name,
+  _ename: string);
+begin
+  inherited Create(_name, ename);
+  fuid := _uid;
+  fvalue := _value;
+end;
+
+function MetaObject.getfullname(english: Boolean): string;
+begin
+  if english then
+    Result := fefullname
+  else
+    Result := ffullname;
+end;
+
+procedure MetaObject.setefullname(_efullname: string);
+begin
+  fefullname := _efullname;
+end;
+
+procedure MetaObject.setfullname(_fullname: string);
+begin
+  ffullname := _fullname;
+end;
+
+{ MetaGeneratedType }
+
+constructor MetaGeneratedType.Create(tr: tree);
+var
+  tt: tree;
+begin
+  tt := tt.get_first;
+  fname := tt.get_value;
+  tt := tt.get_next;
+  fename := tt.get_value;
+  tt := tt.get_next;
+  //fwoprefix := tt.get_value.CompareTo()
+  if tt.get_value.CompareTo('1') = 0 then
+    fwoprefix := True
+  else
+    fwoprefix := False;
+end;
+
+constructor MetaGeneratedType.Create(_name, _ename: string);
+begin
+  inherited Create(_name, _ename);
+end;
+
+{ MetaRight }
+
+constructor MetaRight.Create(tr: tree);
+var
+  tt: tree;
+begin
+  tt := tr.get_first;
+  fname := tt.get_value;
+  tt := tt.get_next;
+  fename := tt.get_value;
+  tt := tt.get_next;
+  // string_to_GUID(tt.get_value, fuid); Надо доделать!!!!!!!!!!!!
+  tt := tt.get_next;
+  // fver1C := stringtover1C(tt.get_value); Надо доделать!!!!!!!!!!!!
+  if fver1C = v1C_min then
+  begin
+      //		error(L"Ошибка загрузки статических типов. Некорректное значение версии 1C в описании права"
+      //			, L"Право", fname
+      //			, L"Значение", tt->get_value());
+  end;
+  map[fuid] := Self;
+  smap[fname] := Self;
+  smap[fename] := Self;
+end;
+
+class function MetaRight.getright(_uid: TGUID): MetaRight;
+begin
+  if not map.TryGetValue(_uid, Result) then
+    Result := nil;
+end;
+
+class function MetaRight.getright(_name: string): MetaRight;
+begin
+  if not smap.TryGetValue(_name, Result) then
+    Result := nil;
 end;
 
 end.
